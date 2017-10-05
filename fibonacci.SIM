@@ -1,0 +1,38 @@
+	ORG 0
+	BR /INICIO
+A1	DATA 1
+A2	DATA 1
+N	DATA 10
+AI	RES 1 ; Termino actual
+AJ 	RES 1 ; Temino n-1
+AK	RES 1 ; Termino n-2
+CONT 	RES 1
+SUMA	RES 1
+INICIO 	CLR
+	ADD /A1
+	ADD /A2
+	ST /SUMA
+	LD /A1
+	ST /AJ
+	LD /A2
+	ST /AK
+	LD /N
+	DEC
+	DEC
+	ST /CONT
+BUC	BZ /FIN
+	LD /AJ ; Cargo termino n-1
+	ADD /AK ; Sumo n-1 y n-2 y obtengo An
+	ST /AI ; Guardo An generado en memoria
+	LD /AJ ; Cargo el termino n-1
+	ST /AK ; Lo guardo como n-2
+	LD /AI ; Cargo termino An
+	ST /AJ ; Guardo termino An como n-1
+	ADD /SUMA ; Sumo lo que llevo mas el termino actual
+	ST /SUMA ; Guardo resultado en la memoria
+	LD /CONT
+	DEC
+	ST /CONT
+	BR /BUC
+FIN	HALT	
+	END
